@@ -11,3 +11,5 @@ Line numbers and syntax highlighting can be enabled by editing the
   syntax on
   set number
 ```
+
+####TO DO ADD THEMES/AUTO COMPLETE
