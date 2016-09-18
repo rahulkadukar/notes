@@ -1,0 +1,139 @@
+
+% This file contains notes that I made when I was learning programming languages
+\documentclass[11pt,a4paper,oneside]{book}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings,caption,color,multicol,textcomp,tabularx,longtable}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{startstop} = [
+  rectangle,
+  rounded corners,
+  minimum width=3cm,
+  minimum height=0.75cm,
+  text centered, 
+  draw=black,
+  fill=red!30 ]
+\tikzstyle{io} = [
+  trapezium,
+  trapezium left angle=70,
+  trapezium right angle=110,
+  minimum width=3cm, 
+  minimum height=0.75cm,
+  text centered,
+  draw=black,
+  fill=blue!30 ]
+\tikzstyle{process} = [
+  rectangle,
+  minimum width=3cm,
+  minimum height=0.75cm,
+  text centered,
+  draw=black, 
+  fill=orange!30 ]
+\tikzstyle{decision} = [
+  diamond,
+  minimum width=3cm,
+  minimum height=0.75cm,
+  text centered,
+  draw=black, 
+  fill=green!30 ]
+\tikzstyle{arrow} = [
+  thick,
+  ->,
+  >=stealth ]
+
+\setcounter{tocdepth}{1}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{orange}{RGB}{255,127,0}
+\definecolor{caption}{RGB}{188,232,241}
+\definecolor{captionText}{RGB}{49,112,143}
+
+\lstset{
+  frame=single,
+  framexleftmargin=-3.4pt,
+  framexrightmargin=-3.4pt,
+  language=C,
+  rulecolor=\color{caption},
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  keywordstyle=\color{dkgreen},
+  commentstyle=\itshape\color{mauve},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\DeclareCaptionFont{white}{\color{captionText}}
+\DeclareCaptionFormat{listing}{
+  \colorbox{caption}
+  {\parbox
+    {\dimexpr\textwidth-2\fboxsep\relax}
+    {#1#2#3}
+  }
+}
+
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+
+% This section contains general information about the author
+\begin{document}
+\title{My Reference Book}
+\author{
+Rahul Kadukar, \\
+North Bergen, New Jersey, \\
+USA 07047 \\
+\\
+\texttt{\textcolor{blue}{rahul.kadukar@rutgers.edu}} \\
+\texttt{\textcolor{blue}{kadukar.rahul@gmail.com}}
+}
+\date{12 December 2015}
+\maketitle
+\begingroup
+\let\cleardoublepage\clearpage
+\tableofcontents
+% This can be added to show listings \lstlistoflistings%
+\endgroup
+
+% The programming language C starts here
+\part{C}
+\chapter{An Introduction}
+The reference book that I am using is the 6th edition of \textbf{C Primer Plus}
+by \textit{\textbf {Stephen Prata}}.
+\section{Hello world}
+Hello world program in C.
+\begin{lstlisting}[title=Hello world program]
+  
+  /* This is the Hello world program */
+
+  #include<stdio.h>
+  
+  void main(){
+    printf("Hello world\n");
+  }
+  
+\end{lstlisting}
+
+% The programming language Scala starts here
+\part{Scala}
+\setcounter{chapter}{0}
+\chapter{Types in Scala}
+\begin{itemize}
+\itemsep-3pt
+\item  Byte        8-bit signed two's complement integer (-27 to 27 - 1, inclusive)
+\item  Short       16-bit signed two's complement integer (-215 to 215 - 1, inclusive)
+\item Int         32-bit signed two's complement integer (-231 to 231 - 1, inclusive)        
+\item Long        64-bit signed two's complement integer (-263 to 263 - 1, inclusive)
+\item Char        16-bit unsigned Unicode character (0 to 216 - 1, inclusive)        
+\item String        a sequence of Chars        
+\item Float        32-bit IEEE 754 single-precision float        \item Double        64-bit IEEE 754 double-precision float        \item Boolean        true or false
+\end{itemize} 
+\end{document}

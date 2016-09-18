@@ -1,0 +1,5 @@
+\contentsline {part}{I\hspace {1em}C}{2}
+\contentsline {chapter}{\numberline {1}An Introduction}{3}
+\contentsline {section}{\numberline {1.1}Hello world}{3}
+\contentsline {part}{II\hspace {1em}Scala}{4}
+\contentsline {chapter}{\numberline {1}Types in Scala}{5}
