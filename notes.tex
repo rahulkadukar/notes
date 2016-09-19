@@ -111,7 +111,7 @@ The reference book that I am using is the 6th edition of \textbf{C Primer Plus}
 by \textit{\textbf {Stephen Prata}}.
 \section{Hello world}
 Hello world program in C.
-\noindent \begin{lstlisting}[title=Hello world program, language=C]
+\begin{lstlisting}[title=Hello world program, language=C]
   
   /* This is the Hello world program */
   // This is a single line comment
@@ -119,11 +119,66 @@ Hello world program in C.
   #include <stdio.h>
   
   int main(){
+    int x;
+    x = 42;  
+    
     printf("Hello world\n");
+    printf("I like the number %d\n", x);
+    
+    return 0;
   }
   
 \end{lstlisting}
 
+\noindent The important things to observe in this program are
+\begin{itemize}
+  \itemsep-3pt
+  \item The first function that is called in a C program is main().
+  \item The effect of \#include is the same as typing the contents of that file.
+  \item The \#include is called a \textbf{C preprocessor directive}.
+  \item The line int x is called \textbf{statement declaration}.
+  \item The line x = 42 is called \textbf{assignment statement}.
+  \item The \textbf{printf} statement is a function call which passes some arguments.
+  \item The \textbf{return} statement is used to indicate end of function execution.
+\end{itemize}
+
+\chapter{Keywords}
+\section{Keywords and Reserved Identifiers}
+There are certain words which cannot be used to name variables in C as these
+have a meaning in the C language and these are called \textbf{Keywords} in C.
+If you try to use a keyword, for, say, the name of a variable, the compiler
+catches that as a syntax error.\\
+
+\noindent There are other identifiers called \textit{reserved identifiers} that
+should not be used. They do not cause syntax errors as they are valid names. However,
+the language already uses them or reserves the right to use them, so it could cause
+problems if you use these identifiers to mean something else. An example of this
+would be the name of standard library functions such as \textbf{printf}.
+
+\begin{lstlisting}[title=Keywords in C, language=C]
+  auto          short
+  break         signed
+  case          sizeof
+  char          static	
+  const         struct
+  continue      switch
+  default       typedef
+  do            union
+  double        unsigned
+  else          void
+  enum          volatile
+  extern        while
+  float         _Alignas
+  for           _Alignof
+  goto          _Bool
+  if            _Complex
+  inline        _Generic
+  int           _Imaginary
+  long          _Noreturn
+  register      _Static_assert
+  restrict      #_Thread_local
+  return
+\end{lstlisting}
 
 
 % The programming language Scala starts here
