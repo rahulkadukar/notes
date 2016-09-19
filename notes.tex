@@ -45,10 +45,11 @@
 
 \setcounter{tocdepth}{1}
 
-\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{keyword}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{orange}{RGB}{255,127,0}
+\definecolor{text}{RGB}{52, 152, 219}
+\definecolor{comment}{rgb}{0.58,0,0.82}
+\definecolor{string}{RGB}{255,127,0}
 \definecolor{caption}{RGB}{188,232,241}
 \definecolor{captionText}{RGB}{49,112,143}
 
@@ -63,10 +64,10 @@
   showstringspaces=false,
   columns=flexible,
   basicstyle={\small\ttfamily},
-  keywordstyle=\color{dkgreen},
-  commentstyle=\itshape\color{mauve},
-  identifierstyle=\color{blue},
-  stringstyle=\color{orange},
+  keywordstyle=\color{keyword},
+  commentstyle=\itshape\color{comment},
+  identifierstyle=\color{text},
+  stringstyle=\color{string},
   breaklines=true,
   breakatwhitespace=true,
   tabsize=3
@@ -110,17 +111,20 @@ The reference book that I am using is the 6th edition of \textbf{C Primer Plus}
 by \textit{\textbf {Stephen Prata}}.
 \section{Hello world}
 Hello world program in C.
-\noindent \begin{lstlisting}[title=Hello world program]
+\noindent \begin{lstlisting}[title=Hello world program, language=C]
   
   /* This is the Hello world program */
+  // This is a single line comment
 
-  #include<stdio.h>
+  #include <stdio.h>
   
-  void main(){
+  int main(){
     printf("Hello world\n");
   }
   
 \end{lstlisting}
+
+
 
 % The programming language Scala starts here
 \part{Scala}
@@ -134,6 +138,8 @@ Hello world program in C.
 \item Long        64-bit signed two's complement integer (-263 to 263 - 1, inclusive)
 \item Char        16-bit unsigned Unicode character (0 to 216 - 1, inclusive)        
 \item String        a sequence of Chars        
-\item Float        32-bit IEEE 754 single-precision float        \item Double        64-bit IEEE 754 double-precision float        \item Boolean        true or false
+\item Float        32-bit IEEE 754 single-precision float
+\item Double        64-bit IEEE 754 double-precision float        
+\item Boolean        true or false
 \end{itemize} 
 \end{document}
