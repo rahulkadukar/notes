@@ -146,8 +146,8 @@ Hello world program in C.
 \section{Keywords and Reserved Identifiers}
 There are certain words which cannot be used to name variables in C as these
 have a meaning in the C language and these are called \textbf{Keywords} in C.
-If you try to use a keyword, for, say, the name of a variable, the compiler
-catches that as a syntax error.\\
+As a simple rule we should not use a keyword as the name of a variable as it
+will cause a syntax error.\\
 
 \noindent There are other identifiers called \textit{reserved identifiers} that
 should not be used. They do not cause syntax errors as they are valid names. However,
@@ -156,30 +156,163 @@ problems if you use these identifiers to mean something else. An example of this
 would be the name of standard library functions such as \textbf{printf}.
 
 \begin{lstlisting}[title=Keywords in C, language=C]
-  auto          short
-  break         signed
-  case          sizeof
-  char          static	
-  const         struct
-  continue      switch
-  default       typedef
-  do            union
-  double        unsigned
-  else          void
-  enum          volatile
-  extern        while
-  float         _Alignas
-  for           _Alignof
-  goto          _Bool
-  if            _Complex
-  inline        _Generic
-  int           _Imaginary
-  long          _Noreturn
-  register      _Static_assert
-  restrict      #_Thread_local
+  auto                                  short
+  break                                 signed
+  case                                  sizeof
+  char                                  static	
+  const                                 struct
+  continue                              switch
+  default                               typedef
+  do                                    union
+  double                                unsigned
+  else                                  void
+  enum                                  volatile
+  extern                                while
+  float                                 _Alignas
+  for                                   _Alignof
+  goto                                  _Bool
+  if                                    _Complex
+  inline                                _Generic
+  int                                   _Imaginary
+  long                                  _Noreturn
+  register                              _Static_assert
+  restrict                              #_Thread_local
   return
 \end{lstlisting}
 
+\chapter{Data Types}
+
+\section{Data types overview}
+The table below shows the data types that are available in C today
+\begin{lstlisting}[title=C data keywords, language=C]
+  
+  // Original keywords in C as per K&R
+    char
+    double
+    float
+    int
+    long
+    short
+    unsigned
+  
+  // Keywords added in C90
+    signed
+    void
+  
+  // C99 keywords
+    _Bool
+    _Complex
+    _Imaginary
+  
+\end{lstlisting}
+
+\section{Int}
+The \textbf{int} type is a signed integer, which means that it can be
+positive, negative or zero. It has the same size as the word size of the
+machine it is being used on. Although most compilers implement int as 32-bit
+even on 64-bit machines. For \textbf{Octal} we can prefix the number with 0
+and for \textbf{Hexadecimal} we can prefix 0X or 0x. The behavior of int can
+be changed by using the following
+
+\begin{itemize}
+\itemsep-3pt
+\item \textbf{short} : This is used when we need less storage than an int
+\item \textbf{long} : This is used when we need more storage than an int
+\item \textbf{unsigned} : This is used when we only need positive values
+\end{itemize}
+
+\noindent The most common practice today on personal computers is to set up
+\textbf{long long} as 64 bits, \textbf{long} as 32 bits, \textbf{short} as 16 bits,
+and \textbf{int} as either 16 bits or 32 bits, depending on the machine's natural
+word size.
+
+\section{Char}
+The char type is used for storing characters such as letters and punctuation marks,
+but technically it is an integer type. The \textbf{char} type stores integers and 
+not characters. To handle characters C uses ASCII. Each character is defined as an
+8-bit unit of memory.\\
+
+\noindent Characters can be initialized by including a single character between
+single quotes. Non-printing characters can be printed by using escape characters
+
+\begin{lstlisting}[language=C, title=Escape sequences]
+
+  \a         // Alert(ANSI C)
+  \b         // Backspace
+  \f         // Form feed
+  \n         // Newline
+  \r         // Carriage return
+  \t         // Horizontal Tab
+  \v         // Vertical Tab
+  \\         // Backslash
+  \'         // Single quote
+  \"         // Double quote
+  \?         // Question mark
+  \0oo       // Octal value (o represents an octal digit)
+  \xhh       // Hexadecimal value (h represents a hexadecimal digit)
+\end{lstlisting}
+
+\section{Portable Types}
+To ensure that the length of the int is exactly what we expect we can use the 
+headers shown below
+
+\begin{lstlisting}[language=C]
+  #include <stdint.h>
+  #include <inttypes.h>
+  
+  // The stdint defines the following types
+    int8_t;         int_least8_t;           int_fast8_t;
+    int16_t;              :                      :
+    int32_t;              :                      :
+    int64_t;              :                      :
+    uint8_t;              :                      :
+    uint16_t;             :                      :
+    uint32_t;             :                      :
+    uint64_t;       uint_least64_t;         uint_fast64_t;
+\end{lstlisting}
+
+\section{Floating point numbers}
+These allow us to represent a wider range of numbers, including decimal fractions.
+The \textbf{float} type allows us to represent at least six significant figures and
+allows a range of at least $10^{-37}$ to $10^{37}$. The \textbf{double} type uses
+the same minimum range requirements as float but allows more significant figures to
+be used. This is done by storing the data in a bigger memory area. Similar to int
+we can also use \textbf{long double}.
+
+\section{Type Sizes}
+To find out the size of a particular data type we use the \textbf{sizeof} operator.
+
+\begin{lstlisting}[language=C]
+  printf("Type int has a size of %zd bytes", sizeof(int));
+\end{lstlisting}
+
+\section{Printing using format specifiers}
+\begin{lstlisting}[language=C, title=Print format specifiers]
+  %c        // Character    char, unsigned char
+  %d        // Signed Integer	short, unsigned short, int, long
+  %e or %E  // Scientific notation of float values	float, double
+  %f        // Floating point	float
+  %g or %G  // Similar as %e or %E	float, double
+  %hi       // Signed Integer(Short)	short
+  %hu       // Unsigned Integer(Short)	unsigned short
+  %i        // Signed Integer	short, unsigned short, int, long
+  %l        // Signed Integer long
+  %ld       // Signed Integer long
+  %li       // Signed Integer long
+  %lf       // Floating point	double
+  %Lf       // Floating point	long double
+  %lu       // Unsigned integer	unsigned int, unsigned long
+  %lli      // Signed Integer	long long
+  %lld      // Signed Integer	long long
+  %llu      // Unsigned Integer	unsigned long long
+  %o        // Octal representation of Integer.	 Same as %d
+  %p        // Address of pointer to void void *	void *
+  %s        // String	char *
+  %u        // Unsigned Integer	unsigned int, unsigned long
+  %x or %X  // Hexadecimal representation of Unsigned Integer	Same as %d
+  %n        // Prints nothing	
+  %%        // Prints % character
+\end{lstlisting}
 
 % The programming language Scala starts here
 \part{Scala}
