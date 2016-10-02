@@ -314,6 +314,70 @@ To find out the size of a particular data type we use the \textbf{sizeof} operat
   %%        // Prints % character
 \end{lstlisting}
 
+\chapter{Character Strings}
+\section{String}
+A character string is a series of one or more characters. It is enclosed by double quotes. This
+is used to indicate to the C compiler that everything between the quotes is part of the string. C has
+no special type for strings. Instead, \textbf{strings} are stored in array of type \textbf{char}.
+Character strings are stored in contiguous memory locations. To mark the end of string C uses a
+\textbf{\textbackslash0} character called the \textit{null character}.
+
+\begin{lstlisting}[language=C]
+  char name[6] = "Rahul";
+\end{lstlisting}
+
+\noindent As we see in the above example we defined an array of size 6 to hold a string of size 5 as we
+also had to include space to store the null character. The null character is stored at the end of the string.
+This means that for a string of size 50 if we are only storing a string of length 10 then the null character
+is stored at position 11.
+
+\section{String Length and sizeof}
+To find the length of the string we can use the \textbf{strlen} function. This is included in the
+\textbf{string.h} header file. This function will parse the string till it finds a null character and report
+the length of the string. The operator \textbf{sizeof} reports the size of the variable. The example below
+shows usage of both.
+
+\begin{lstlisting}[language=C]
+  char name[40] = "Rahul";
+  printf("The length of your string is %zd\n", strlen(name));  // Returns 5
+  printf("The occupied memory is %zd\n", sizeof name);              // Returns 40
+\end{lstlisting}
+
+\section{Constants}
+Originally C used the idea of a preprocessor directive to define constants. This was done by using
+\textbf{\#define}, which has the syntax as shown below
+
+\begin{lstlisting}[language=C]
+  #define <NAME_OF_DEFINITION> definition
+  #define PI 3.14159
+\end{lstlisting}
+
+\noindent The disadvantage with this method is that we are not able to define constants with types and since
+preprocessor directives are applied before the compilation. C has the \textbf{const} keyword that allows us
+to declare constants based on types.
+
+\begin{lstlisting}[language=C]
+  const int months = 12; // Initialized at declaration
+\end{lstlisting}
+
+\section{I/O printf and scanf}
+The \textbf{printf} statement is used to print to console in C. This operator is unique in that it takes a
+variable length argument list. Hence, the number of arguments that are given to the printf statement can be
+variable. The first argument contains the control string which is used by C to print out the data in the
+format specified in the control string. For example 01001100 may be printed as 76, 4c or L based on whether
+the control string has \%d, \%x or \%c.\\
+
+\noindent The function printf also returns a value, it returns the number of characters that it printed. Although
+this is not commonly used, it can be used to check for certain kinds of errors.\\ 
+
+\noindent The \textbf{scanf} function is used to read input from the console and store them into variables. It
+is similar in operation to the printf function discussed above except for one major change. The printf function
+uses variable names, constants and expressions. The scanf function uses pointers instead of the actual variables.\\
+
+\noindent The scanf function uses whitespaces (tabs, newlines and spaces) to decide how to divide the input into
+separate fields. The only exception to this rule is the control string \%c which reads the next character without
+regards to the whitespace rule.
+
 % The programming language Scala starts here
 \part{Scala}
 \setcounter{chapter}{0}
