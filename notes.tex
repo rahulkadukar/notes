@@ -1,4 +1,3 @@
-
 % This file contains notes that I made when I was learning programming languages
 \documentclass[11pt,a4paper,oneside]{book}
 \usepackage[T1]{fontenc}
@@ -377,6 +376,238 @@ uses variable names, constants and expressions. The scanf function uses pointers
 \noindent The scanf function uses whitespaces (tabs, newlines and spaces) to decide how to divide the input into
 separate fields. The only exception to this rule is the control string \%c which reads the next character without
 regards to the whitespace rule.
+
+\chapter{Operators}
+\section{Arithmetic Operators}
+C uses \textit{operators} to represent arithmetic operations. The operators supported by C
+include the following
+
+\begin{lstlisting}[language=C, title=Arithmetic operators]
+  
+  = // Assignment
+  + // Addition
+  - // Subtraction
+  * // Multiplication
+  / // Division
+  % // Modulus
+  ++ // Increment
+  -- // Decrement
+  sizeof // Determine the size of the operand
+  
+\end{lstlisting}
+
+\section{Operator Precedence}
+\noindent Each operator is assigned a \textbf{precedence} level. This determines which
+operator needs to be evaluated first. If two operators have the same precedence and they 
+also share an operand then they are executed in the order in which they appear in the
+statement. For most operators, this is going to be \textit{left to right}.\\
+
+\indent For arithmetic operators this is the precedence in decreasing precedence.
+
+\begin{lstlisting}[language=C, title=Operator precedence]
+  ( )    // Left to Right
+  ++ --  // Left to Right
+  + -    // (Unary) Right to Left
+  * / %  // Left to Right
+  + -    // Left to Right
+  < > <= >= // Left to Right
+  == !=  // Left to Right
+  =      // Right to Left
+\end{lstlisting}
+
+\section{Expression}
+\noindent An expression is a combination of operators and operands. The simplest expression
+is just a operand (constant or variable). Every expression has a value, which can be found
+by operating on the operands with the operator.
+
+\section{Statements}
+\noindent Statements are expressions with a semi-colon at the end. A program is technically
+a series of statements with some necessary punctuation. A statement is a complete
+instruction to the computer. A statement may or may not have a \textit{side effect}, which
+is defined as the modification of a data object or file. Statements are of the following
+types:
+
+\begin{itemize}
+  \itemsep-3pt
+  \item Declaration
+  \item Assignment
+  \item Function Call
+  \item Structured
+  \item Return
+  \item Null
+\end{itemize}
+
+\section{Type Conversions}
+\noindent Whenever we mix types in C, it performs some type conversions automatically.
+There are a set of rules that it follows to do the automatic type conversion
+
+\begin{itemize}
+  \itemsep-3pt
+  \item For two distinct types, the lower type is converted to the higher type
+  \item The length of data type determines who is higher and who is lower
+  \item In assignment, conversion takes place towards the result
+  \item In functions, char and short go to int and float to double
+\end{itemize}
+
+\noindent Sometimes to force type conversions we can explicitly cast a variable into
+a different type based on our requirement. The syntax for doing the same is shown below
+
+\begin{lstlisting}[language=C, title=Type conversion]
+  int total;
+  total = 1.4 + 1.6; // No casting, total will end up with 3
+  total = (int) 1.4 + (int) 1.6 // Casting before addition, ends up with 2
+\end{lstlisting}
+
+\chapter{Control Statements}
+\section{While Loop}
+Looping allows us to perform an operation more than once upto a fixed number of times.
+There are multiple ways to loop in C. The \textbf{while} loop is an entry condition loop
+where the condition is tested before the loop is entered and if it is true then the 
+subsequent statements in the while block are executed. These statements are executed till
+the condition evaluates to false. 
+
+\begin{lstlisting}[language=C, title=While loop]
+
+  while( expression ) {
+    // Statements to execute  
+  }
+\end{lstlisting}
+
+\noindent In the above example, there is a check which is done to find out the
+truth value before the iteration of the loop is performed again. In C we have a very
+loose notion of truth. 0 is considered false and any non-zero value is considered
+the truth. Another shorthand that is used to evaluate test conditions is you can 
+directly specify the variable instead of checking if it is equal or not to zero.\\
+
+\noindent C has introduced a new \textbf{\_Bool} type. This type can only have two
+values which are True and False. If you try to assign a nonzero numeric value to a
+\textbf{\_Bool} variable then it is stored as 1, while False is stored as 0.
+
+\section{For Loop}
+\noindent The \textbf{for} loop has three actions which are initializing, testing 
+and then updating the condition in the beginning of the for loop. The initialize
+expression is only executed once and it need not necessarily be an initialization
+and could be a printf statement.\\
+
+\noindent In the C and C++ programming languages, the comma operator (represented
+by the token ,) is a binary operator that evaluates its first operand and discards
+the result, and then evaluates the second operand and returns this value (and type).
+This operator also guarantees that the expressions would be evaluated in a left to
+right order, hence the side effect of one of the expressions could be used in the
+expression on the right.\\
+
+\noindent The comma operator is also used as a separator during variable initialization
+and also in functions to separate the arguments to that function.
+
+\begin{lstlisting}[language=C, title=For loop]
+
+  for( initialize; test; update) {
+    // Statements to execute  
+  }
+  
+  for(;;) // valid for loop
+
+  for( init1, init2; test ; update1, update2) {
+    // Multiple initializations and updates
+  }
+\end{lstlisting}
+
+\section{Do While Loop}
+\noindent The \textbf{do while} loop is an exit condition loop, in which the exit
+condition is checked after the iteration of the loop, this guarantees that the
+loop will execute at least once.
+
+\begin{lstlisting}[language=C, title=Do while loop]
+  
+  do {
+    // Execute statements  
+  } while (expression);
+\end{lstlisting}
+
+\section{Branching statements}
+\noindent The \textbf{if} statement is a branching statement which allows us to 
+conditionally execute a set of statements. If we want to take an alternative path
+based on the if condition we can also include an \textbf{else} statement. The 
+syntax for these is shown below. 
+
+\begin{lstlisting}[language=C, title=Branching statements]
+  
+  if ( expression ) {
+    // Statements to execute 
+  } else {
+    // Alternative statements to execute  
+  }
+\end{lstlisting}
+
+\noindent The branching statements are often used with logical operators, these
+include \textbf{OR}, \textbf{AND} and \textbf{NOT}. These are represented in C as
+shown below. OR and AND take two operands and return \textbf{True} or \textbf{False}
+based on the operands. The NOT operator takes a single operand.
+
+\begin{lstlisting}[language=C]
+  || // OR
+  && // AND
+  !  // NOT
+\end{lstlisting}
+
+\noindent C also has a \textbf{ternary} operator which takes three operands and is 
+a shorthand for the if-else condition. It uses the token ? and has a general syntax
+as shown below, which is saying if \textbf{expr1} then \textbf{expr2} else \textbf{expr3}
+
+\begin{lstlisting}[language=C]
+  expression1 ? expression2 : expression3
+\end{lstlisting}
+
+\section{Exiting Loops}
+\noindent There are situations where we want to exit the loop or skip evaluation for
+that iteration. C allows us to do that by using the \textbf{break} and \textbf{continue}
+statements. These statements allow loops to be terminated or skipped respectively.\\
+
+\noindent The \textbf{break} statement immediately stops the execution of the loop and 
+continues after the last statement of the loop. In case of nested loops the break 
+statement only breaks out of the loop in which it is called. The \textbf{continue}
+statement on the other hand is used to skip the current iteration and goes to the 
+first statement after the loop without going through the rest of the loop.
+
+\section{Switch statement}
+\noindent Sometimes a program needs to take multiple paths based on a condition. We can
+use nested if else statements to do this but an easier, faster and more readable 
+alternative is \textbf{switch}. This statement allows us to take one of the many 
+branches based on a condition. The break statement at the end of each case is used to 
+exit out of the switch otherwise the execution continues onto the next case.
+
+\noindent There can be multiple labels with the same action. To do this we can define
+all of them together and only write the common logic and the break statement in the last
+instance of the case which are all grouped together.
+
+\begin{lstlisting}[language=C, title=Switch statement]
+
+  switch (expression) {
+    case '1':
+      // Statements here, ending with break
+    case '2':
+      // Statements here, ending with break  
+    default:
+      // Statements here
+  }
+
+\end{lstlisting}
+
+\section{Goto Statement}
+\noindent The \textbf{goto} statement is used to transfer control over to a named block
+by calling the block name with the prefix goto. This is generally considered a bad 
+practice as it makes it difficult to follow the order of execution. 
+
+\begin{lstlisting}[language=C, title=Goto statement]
+
+  if ( x > 10 )
+    goto label;
+  
+  label: printf("This is something");
+  
+\end{lstlisting}
+
+\chapter{Input/Output in C}
 
 % The programming language Scala starts here
 \part{Scala}
