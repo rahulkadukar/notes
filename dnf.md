@@ -11,4 +11,8 @@ This file is just a small documentation for all the dnf commands that may be nee
   # To refresh the repolist call the previous command with --refresh flag
   dnf repolist --refresh
   
+  # To view how many packages are installed
+  dnf list --installed
+  
+  # dnf repo-pkgs <PACKAGE> list
 ```
