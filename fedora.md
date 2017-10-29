@@ -1,3 +1,20 @@
+### Fedora installation
+
+#### Setting up git
+
+The following steps are used to generate the ssh key for easier github interaction.
+
+```bash
+  # Generate the SSH key
+  ssh-keygen -t rsa -b 4096 -C "rahulkadukar@yahoo.com"
+
+  # Add the private key using ssh-add
+  ssh-add ~/.ssh/id_rsa
+
+  # Now copy the public key and paste it into github
+  cat ~/.ssh/id_rsa.pub
+```
+
 #### DNF Commands
 
 This file is just a small documentation for all the dnf commands that may be needed
