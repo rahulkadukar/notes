@@ -67,6 +67,73 @@ Download and install TigerVNC and allow it through the firewall
   vncpasswd
 ```
 
+#### Install Visual Studio Code
+
+This step is optional but it is better to have some sort of Editor
+
+```bash
+  # Run the following commands to add the new repository list. All actions done as root
+  rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=
+  https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=
+  https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+  # Install Visual Studio Code
+  dnf install code
+```
+
+#### Install Postgresql
+
+Install Postgres and Postgres Server. At the time of writing the repository from
+Fedora had Postgres 9.6 (Upgrading is not clear and needs to be tested on a VM)
+
+```bash
+  # Install Postgres, all actions done as root
+  dnf install postgresql postgresql-server postgresql-contrib
+
+  # Enable the server
+  systemctl enable postgresql
+  systemctl start postgresql  # This will generally give an error
+```
+
+During the enabling of the server, it may give an Error. Generally the error is 
+caused because there is no initial database. The database is usually located at
+/var/lib/pgsql/data and needs to be initialized. The binary for initializing the 
+database is located at /usr/bin/postgresql-setup --initdb
+
+```bash
+  # This command is used to initialize the database
+  postgresql-setup --initdb --unit postgresql
+
+  # Follow this up with starting the server again
+  systemctl start postgresql
+
+  # Install pgadmin3
+  dnf intsall pgadmin3
+```
+
+After installing **pgadmin3** we need to change the authentication method that
+is used by the postgresql server. For pgadmin3 we want to use the md5 method of
+authentication. Change the /var/lib/pgsql/data/pg_hba.conf file and change the
+authentication method on lines with IPv4 local connections and IPv6 local
+connections from ident to md5. Once this is done, we still need to set a password
+on the postgres user (who is created by default).
+
+```bash
+  # Open the shell as the user postgres
+  su - postgres # Best to do this as root
+
+  # On the shell that opens, enter the command psql
+  psql
+
+  # Here set the password with the following command
+  \password
+```
+
+Set the password and use it login from pgadmin3. Once logged in create a new user
+dbguy and set a password. Login to pgadmin3 using the newly created user (this is
+to ensure that we do not use a superuser to access the database)
+
 #### DNF Commands
 
 This file is just a small documentation for all the dnf commands that may be needed
@@ -83,5 +150,6 @@ This file is just a small documentation for all the dnf commands that may be nee
   # To view how many packages are installed
   dnf list --installed
   
-  # dnf repo-pkgs <PACKAGE> list
+  # To view all the packages inside a repo
+  dnf repo-pkgs <PACKAGE> list
 ```
