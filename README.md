@@ -11,3 +11,7 @@ The notes contain a lot of mathematical formulae and hence I have
 decided to use latex instead of markdown for writing the notes. There
 is a tex file in the repository called notes.tex and this can be used
 to produce a file in any format using something like **pandoc**
+
+After doing more research I have found that you can use MathML in the
+Markdown directly and this can then be converted into any format 
+including HTML that renders the equations perfectly.
