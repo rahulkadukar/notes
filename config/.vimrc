@@ -1,4 +1,5 @@
 syntax on
+set paste
 set number
 set numberwidth=3
 set tabstop=2
