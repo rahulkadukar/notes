@@ -134,6 +134,20 @@ Set the password and use it login from pgadmin3. Once logged in create a new use
 dbguy and set a password. Login to pgadmin3 using the newly created user (this is
 to ensure that we do not use a superuser to access the database)
 
+To enable access from remote machines we need to modify the file pg\_hba.conf and add
+the following lines to it (one for IPv4 and one for IPv6)
+
+```bash
+  host    all             all             0.0.0.0/0         md5
+  host    all             all             ::/0              md5
+```
+
+The file postgresql.conf in the same directory also needs to be modified
+
+```bash
+  listen_addresses = 'localhost,<YOUR REMOTE IP>'
+```
+
 #### DNF Commands
 
 This file is just a small documentation for all the dnf commands that may be needed
