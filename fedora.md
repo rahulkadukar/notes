@@ -88,8 +88,18 @@ Install Postgres and Postgres Server. At the time of writing the repository from
 Fedora had Postgres 9.6 (Upgrading is not clear and needs to be tested on a VM)
 
 ```bash
-  # Install Postgres, all actions done as root
-  dnf install postgresql postgresql-server postgresql-contrib
+  # Get the latest RPM from yum.postgresql site
+  rpm -Uvh <rpm file downloaded above>
+  dnf install postgresql11-server postgresql11
+  
+  /usr/pgsql-11/bin/postgresql-11-setup initdb
+  
+  # To change the password
+  su - postgres
+  \password
+  
+  # To change the settings to enable remote connections
+  # Follow steps below to change pg_hba.conf and postgresql.conf  
 
   # Enable the server
   systemctl enable postgresql
