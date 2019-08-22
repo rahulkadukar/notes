@@ -15,3 +15,13 @@ to produce a file in any format using something like **pandoc**
 After doing more research I have found that you can use MathML in the
 Markdown directly and this can then be converted into any format 
 including HTML that renders the equations perfectly.
+
+## vim and tmux setup
+```bash
+git clone https://github.com/rahulkadukar/notes.git 0d0bb8cd1f6c3851ad90bceb8978b86b424209373818a81e782ffdcb6e2a91ea4332cbf9ab3415eb932979cac14e2c3a82872667d35b39641fb35a66b448d1eb && \
+mkdir -p ~/.vim/colors && \
+cp 0d0bb8cd1f6c3851ad90bceb8978b86b424209373818a81e782ffdcb6e2a91ea4332cbf9ab3415eb932979cac14e2c3a82872667d35b39641fb35a66b448d1eb/config/.vim/colors/lucius.vim ~/.vim/colors/lucius.vim && \
+cp 0d0bb8cd1f6c3851ad90bceb8978b86b424209373818a81e782ffdcb6e2a91ea4332cbf9ab3415eb932979cac14e2c3a82872667d35b39641fb35a66b448d1eb/config/.vimrc ~/.vimrc && \
+cp  0d0bb8cd1f6c3851ad90bceb8978b86b424209373818a81e782ffdcb6e2a91ea4332cbf9ab3415eb932979cac14e2c3a82872667d35b39641fb35a66b448d1eb/config/.tmux.conf ~/.tmux.conf && \
+rm -rf 0d0bb8cd1f6c3851ad90bceb8978b86b424209373818a81e782ffdcb6e2a91ea4332cbf9ab3415eb932979cac14e2c3a82872667d35b39641fb35a66b448d1eb/
+```
