@@ -67,6 +67,34 @@ Download and install TigerVNC and allow it through the firewall
   vncpasswd
 ```
 
+Based on the link [here](https://bugzilla.redhat.com/show_bug.cgi?id=1626255) the 
+following steps need to be done
+
+```bash
+  # Create a file using
+  vim /etc/systemd/system/systemd-tigervnc.te
+  
+  # In that file place the following
+  
+  module systemd-tigervnc 1.0;
+
+  require {
+    type init_t;
+    type user_home_t;
+    class file { open read unlink };
+  }
+
+  #============= init_t ==============
+  allow init_t user_home_t:file { open read unlink };
+  
+  # Then run these three commands
+  checkmodule -M -m -o /tmp/systemd-tigervnc.mod systemd-tigervnc.te
+  semodule_package -o /tmp/systemd-tigervnc.pp -m /tmp/systemd-tigervnc.mod
+  semodule -X 300 -i /tmp/systemd-tigervnc.pp
+  
+  # Restart VNC server
+```
+
 #### Install Visual Studio Code
 
 This step is optional but it is better to have some sort of Editor
