@@ -75,7 +75,10 @@ following steps need to be done
   vim /etc/systemd/system/systemd-tigervnc.te
   
   # In that file place the following
-  
+ ```
+ 
+ **FILE CONTENTS BELOW**
+ ```bash
   module systemd-tigervnc 1.0;
 
   require {
@@ -86,7 +89,10 @@ following steps need to be done
 
   #============= init_t ==============
   allow init_t user_home_t:file { open read unlink };
+  ```
+  **END OF FILE CONTENTS**
   
+  ```bash
   # Then run these three commands
   checkmodule -M -m -o /tmp/systemd-tigervnc.mod systemd-tigervnc.te
   semodule_package -o /tmp/systemd-tigervnc.pp -m /tmp/systemd-tigervnc.mod
