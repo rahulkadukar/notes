@@ -12,8 +12,8 @@ as we were maintaning the extra line. For the rest of the months we are paying *
 
 | Start | End | Paid |
 |:-|:-|-:|
-| Sep-15 | Nov-15 | 45 * 2 = 90 |
-| Nov-15 | Aug-15 | 33.33 * 9 = 300 |
+| Sep-17 | Nov-17 | 45 * 2 = 90 |
+| Nov-17 | Aug-18 | 33.33 * 9 = 300 |
 
 The total above is $390.
 
